@@ -1,26 +1,37 @@
-# import Post from "./generated/prisma.graphql"
+scalar DateTime
 
 type Query {
-    posts: [Post!]!
+    me: User
+    filterPosts:(searchString: String): [Post!]!
+    feed: [Post!]!
     post(id: ID!): Post
-    description: String!
 }
 
 type Mutation {
-    createDraft(title: String!, content: String!): Post
+    createDraft(title: String!, content: String!): Post!
     deletePost(id: ID!): Post
     publish(id: ID!): Post
-    signup(email: String!, password: String!, name: String!): AuthPayload
-    login(email: String!, password: String!): AuthPayload
+    signup(email: String!, password: String!, name: String!): AuthPayload!
+    login(email: String!, password: String!): AuthPayload!
 }
 
 type AuthPayload {
-    token: String
-    user: User
+    token: String!
+    user: User!
 }
 type User {
     id: ID!
-    name: String!
+    name: String
     email: String!
-    posts: [Post]
+    posts: [Post!]!
+}
+
+type Post {
+    id: ID!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    published: Boolean!
+    title: String!
+    content: String!
+    author: User!
 }
