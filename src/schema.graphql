@@ -10,4 +10,6 @@ type Mutation {
     createDraft(title: String!, content: String!): Post
     deletePost(id: ID!): Post
     publish(id: ID!): Post
+    signup(email: String!, password: String!, name: String!): AuthPayload
+    login(email: String!, password: String!): AuthPayload
 }
