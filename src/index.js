@@ -30,7 +30,7 @@ const resolvers = {
       },
       publish: (parent, args) => {
         const postIndex = posts.findIndex(post => post.id === args.id)
-        posts(postIndex).published = true;
+        posts[postIndex].published = true;
         return posts[postIndex]
       }
   }
