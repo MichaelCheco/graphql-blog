@@ -3,6 +3,7 @@ type User {
   name: String!
   email: String! @unique
   password: String!
+  posts: [Post!]!
 }
 
 type Post {
@@ -10,4 +11,7 @@ type Post {
   title: String!
   content: String!
   published: Boolean! @default(value: "false")
+  author: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
