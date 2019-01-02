@@ -9,6 +9,18 @@ const resolvers = {
     posts: () => posts,
     post: (parent, args) => posts.find(post => post.id === args.id)
   },
+  Mutation: {
+      createDraft: (parent, args) => {
+          const post = {
+              id: `post_${idCount++}`,
+              title: args.title,
+              content: args.content,
+              published: false
+          }
+          posts.push(post)
+          return post
+      }
+  }
 };
 
 const server = new GraphQLServer({
