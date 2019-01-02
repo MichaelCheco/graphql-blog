@@ -4,3 +4,8 @@ type Query {
     description: String!
 }
 
+type Mutation {
+    createDraft(title: String!, content: String!): Post
+    deletePost(id: ID!): Post
+    publish(id: ID!): Post
+}
