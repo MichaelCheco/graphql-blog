@@ -1,5 +1,6 @@
 endpoint: https://us1.prisma.sh/michael-a-checo/database/dev
 datamodel: datamodel.prisma
+secret: 'secret'
 
 generate:
   - generator: javascript-client
