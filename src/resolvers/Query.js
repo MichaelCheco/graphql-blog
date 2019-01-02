@@ -1,15 +1,32 @@
+const { getUserId } = require('../utils')
 
-async function posts(parent, args, ctx, info) {
-    const data = await ctx.db.query.posts({}, info)
-    return data
-}
-
-async function post(parent, args, ctx, info) {
-    const data = await ctx.db.query.post({ where: {id: args.id } }, info)
-    return data
+const Query = {
+    me: (parent, args, context) => {
+        const userId = getUserId(context)
+        return context.prisma.user({ id: userId})
+    },
+    feed: (parent, args, context) => {
+        return context.prisma.posts({ where: { published: true } })
+    },
+    filterPosts: (parent, { searchString }, context) => {
+        return context.prisma.posts({
+            where: {
+                OR: [
+                    {
+                        title_contains: searchString
+                    },
+                    {
+                        content_contains: searchString
+                    }
+                ]
+            }
+        })
+    },
+    post: (parent, { id }, context) => {
+        return context.prisma.post({ id })
+    }
 }
 
 module.exports = {
-    posts,
-    post
+    Query
 }
