@@ -1,11 +1,14 @@
 const { GraphQLServer } = require("graphql-yoga");
 
-
+let idCount = 0;
+const posts = []
 
 const resolvers = {
   Query: {
-    description: () => `This is the API of a blogging application`
-  }
+    description: () => `This is the API of a blogging application`,
+    posts: () => posts,
+    post: (parent, args) => posts.find(post => post.id === args.id)
+  },
 };
 
 const server = new GraphQLServer({
