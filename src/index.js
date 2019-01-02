@@ -1,7 +1,5 @@
 const { GraphQLServer } = require("graphql-yoga");
-
-let idCount = 0;
-const posts = []
+const { Prisma } = require('prisma-binding')
 
 const resolvers = {
   Query: {
