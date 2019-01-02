@@ -19,6 +19,14 @@ const resolvers = {
           }
           posts.push(post)
           return post
+      },
+      deletePost: (parent, args) => {
+          const postIndex = posts.findIndex(post => post.id === args.id)
+          if ( postIndex > -1) {
+              const deleted = posts.splice(postIndex, 1)
+              return deleted[0]
+          }
+          return null
       }
   }
 };
