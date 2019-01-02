@@ -27,6 +27,11 @@ const resolvers = {
               return deleted[0]
           }
           return null
+      },
+      publish: (parent, args) => {
+        const postIndex = posts.findIndex(post => post.id === args.id)
+        posts(postIndex).published = true;
+        return posts[postIndex]
       }
   }
 };
