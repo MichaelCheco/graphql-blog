@@ -55,6 +55,18 @@ const Mutation = {
         name: newName
       }
     })
+  },
+  writeComment: (parent, { postId, userId }, context) => {
+    const userId = getUserId(context)
+    return context.prisma.createComment({
+      text,
+      post: {
+        connect: { id: postId }
+      },
+      writtenBy: {
+        connect: { id: userId }
+      }
+    })
   }
 }
 

@@ -14,6 +14,7 @@ type Mutation {
   signup(email: String!, password: String!, name: String): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
   updateUserName(id: ID!, newName: String!): User
+  writeComment(text: String!, postId: ID!): Comment
 }
 
 type AuthPayload {
@@ -29,6 +30,7 @@ type Post {
   title: String!
   content: String
   author: User!
+  comments: [Comment!]!
 }
 
 type User {
@@ -36,4 +38,12 @@ type User {
   email: String!
   name: String
   posts: [Post!]!
+  comments: [Comment!]!
+}
+
+type Comment {
+    id: ID!
+    text: String!
+    writtenBy: User!
+    post: Post!
 }
