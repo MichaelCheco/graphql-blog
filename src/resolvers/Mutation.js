@@ -46,6 +46,16 @@ const Mutation = {
       data: { published: true },
     })
   },
+  updateUserName: (parent, { id, newName }, context) => {
+    return context.prisma.updateUser({
+      where: {
+        id
+      },
+      data: {
+        name: newName
+      }
+    })
+  }
 }
 
 module.exports = {
