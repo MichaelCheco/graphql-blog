@@ -4,7 +4,6 @@ type User {
   email: String! @unique
   password: String!
   posts: [Post!]!
-  comments: [Comment!]!
 }
 
 type Post {
@@ -15,12 +14,4 @@ type Post {
   author: User!
   createdAt: DateTime!
   updatedAt: DateTime!
-  comments: [Comment!]!
-}
-
-type Comment {
-  id: ID! @unique
-  text: String!
-  writtenBy: User!
-  post: Post!
 }

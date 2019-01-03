@@ -1,9 +1,5 @@
 module.exports = {
-        typeDefs: /* GraphQL */ `type AggregateComment {
-  count: Int!
-}
-
-type AggregatePost {
+        typeDefs: /* GraphQL */ `type AggregatePost {
   count: Int!
 }
 
@@ -15,242 +11,11 @@ type BatchPayload {
   count: Long!
 }
 
-type Comment {
-  id: ID!
-  text: String!
-  writtenBy: User!
-  post: Post!
-}
-
-type CommentConnection {
-  pageInfo: PageInfo!
-  edges: [CommentEdge]!
-  aggregate: AggregateComment!
-}
-
-input CommentCreateInput {
-  text: String!
-  writtenBy: UserCreateOneWithoutCommentsInput!
-  post: PostCreateOneWithoutCommentsInput!
-}
-
-input CommentCreateManyWithoutPostInput {
-  create: [CommentCreateWithoutPostInput!]
-  connect: [CommentWhereUniqueInput!]
-}
-
-input CommentCreateManyWithoutWrittenByInput {
-  create: [CommentCreateWithoutWrittenByInput!]
-  connect: [CommentWhereUniqueInput!]
-}
-
-input CommentCreateWithoutPostInput {
-  text: String!
-  writtenBy: UserCreateOneWithoutCommentsInput!
-}
-
-input CommentCreateWithoutWrittenByInput {
-  text: String!
-  post: PostCreateOneWithoutCommentsInput!
-}
-
-type CommentEdge {
-  node: Comment!
-  cursor: String!
-}
-
-enum CommentOrderByInput {
-  id_ASC
-  id_DESC
-  text_ASC
-  text_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
-type CommentPreviousValues {
-  id: ID!
-  text: String!
-}
-
-input CommentScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  text: String
-  text_not: String
-  text_in: [String!]
-  text_not_in: [String!]
-  text_lt: String
-  text_lte: String
-  text_gt: String
-  text_gte: String
-  text_contains: String
-  text_not_contains: String
-  text_starts_with: String
-  text_not_starts_with: String
-  text_ends_with: String
-  text_not_ends_with: String
-  AND: [CommentScalarWhereInput!]
-  OR: [CommentScalarWhereInput!]
-  NOT: [CommentScalarWhereInput!]
-}
-
-type CommentSubscriptionPayload {
-  mutation: MutationType!
-  node: Comment
-  updatedFields: [String!]
-  previousValues: CommentPreviousValues
-}
-
-input CommentSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: CommentWhereInput
-  AND: [CommentSubscriptionWhereInput!]
-  OR: [CommentSubscriptionWhereInput!]
-  NOT: [CommentSubscriptionWhereInput!]
-}
-
-input CommentUpdateInput {
-  text: String
-  writtenBy: UserUpdateOneRequiredWithoutCommentsInput
-  post: PostUpdateOneRequiredWithoutCommentsInput
-}
-
-input CommentUpdateManyDataInput {
-  text: String
-}
-
-input CommentUpdateManyMutationInput {
-  text: String
-}
-
-input CommentUpdateManyWithoutPostInput {
-  create: [CommentCreateWithoutPostInput!]
-  delete: [CommentWhereUniqueInput!]
-  connect: [CommentWhereUniqueInput!]
-  disconnect: [CommentWhereUniqueInput!]
-  update: [CommentUpdateWithWhereUniqueWithoutPostInput!]
-  upsert: [CommentUpsertWithWhereUniqueWithoutPostInput!]
-  deleteMany: [CommentScalarWhereInput!]
-  updateMany: [CommentUpdateManyWithWhereNestedInput!]
-}
-
-input CommentUpdateManyWithoutWrittenByInput {
-  create: [CommentCreateWithoutWrittenByInput!]
-  delete: [CommentWhereUniqueInput!]
-  connect: [CommentWhereUniqueInput!]
-  disconnect: [CommentWhereUniqueInput!]
-  update: [CommentUpdateWithWhereUniqueWithoutWrittenByInput!]
-  upsert: [CommentUpsertWithWhereUniqueWithoutWrittenByInput!]
-  deleteMany: [CommentScalarWhereInput!]
-  updateMany: [CommentUpdateManyWithWhereNestedInput!]
-}
-
-input CommentUpdateManyWithWhereNestedInput {
-  where: CommentScalarWhereInput!
-  data: CommentUpdateManyDataInput!
-}
-
-input CommentUpdateWithoutPostDataInput {
-  text: String
-  writtenBy: UserUpdateOneRequiredWithoutCommentsInput
-}
-
-input CommentUpdateWithoutWrittenByDataInput {
-  text: String
-  post: PostUpdateOneRequiredWithoutCommentsInput
-}
-
-input CommentUpdateWithWhereUniqueWithoutPostInput {
-  where: CommentWhereUniqueInput!
-  data: CommentUpdateWithoutPostDataInput!
-}
-
-input CommentUpdateWithWhereUniqueWithoutWrittenByInput {
-  where: CommentWhereUniqueInput!
-  data: CommentUpdateWithoutWrittenByDataInput!
-}
-
-input CommentUpsertWithWhereUniqueWithoutPostInput {
-  where: CommentWhereUniqueInput!
-  update: CommentUpdateWithoutPostDataInput!
-  create: CommentCreateWithoutPostInput!
-}
-
-input CommentUpsertWithWhereUniqueWithoutWrittenByInput {
-  where: CommentWhereUniqueInput!
-  update: CommentUpdateWithoutWrittenByDataInput!
-  create: CommentCreateWithoutWrittenByInput!
-}
-
-input CommentWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  text: String
-  text_not: String
-  text_in: [String!]
-  text_not_in: [String!]
-  text_lt: String
-  text_lte: String
-  text_gt: String
-  text_gte: String
-  text_contains: String
-  text_not_contains: String
-  text_starts_with: String
-  text_not_starts_with: String
-  text_ends_with: String
-  text_not_ends_with: String
-  writtenBy: UserWhereInput
-  post: PostWhereInput
-  AND: [CommentWhereInput!]
-  OR: [CommentWhereInput!]
-  NOT: [CommentWhereInput!]
-}
-
-input CommentWhereUniqueInput {
-  id: ID
-}
-
 scalar DateTime
 
 scalar Long
 
 type Mutation {
-  createComment(data: CommentCreateInput!): Comment!
-  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
-  updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
-  upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
-  deleteComment(where: CommentWhereUniqueInput!): Comment
-  deleteManyComments(where: CommentWhereInput): BatchPayload!
   createPost(data: PostCreateInput!): Post!
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
   updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
@@ -290,7 +55,6 @@ type Post {
   author: User!
   createdAt: DateTime!
   updatedAt: DateTime!
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
 }
 
 type PostConnection {
@@ -304,7 +68,6 @@ input PostCreateInput {
   content: String!
   published: Boolean
   author: UserCreateOneWithoutPostsInput!
-  comments: CommentCreateManyWithoutPostInput
 }
 
 input PostCreateManyWithoutAuthorInput {
@@ -312,23 +75,10 @@ input PostCreateManyWithoutAuthorInput {
   connect: [PostWhereUniqueInput!]
 }
 
-input PostCreateOneWithoutCommentsInput {
-  create: PostCreateWithoutCommentsInput
-  connect: PostWhereUniqueInput
-}
-
 input PostCreateWithoutAuthorInput {
   title: String!
   content: String!
   published: Boolean
-  comments: CommentCreateManyWithoutPostInput
-}
-
-input PostCreateWithoutCommentsInput {
-  title: String!
-  content: String!
-  published: Boolean
-  author: UserCreateOneWithoutPostsInput!
 }
 
 type PostEdge {
@@ -449,7 +199,6 @@ input PostUpdateInput {
   content: String
   published: Boolean
   author: UserUpdateOneRequiredWithoutPostsInput
-  comments: CommentUpdateManyWithoutPostInput
 }
 
 input PostUpdateManyDataInput {
@@ -480,35 +229,15 @@ input PostUpdateManyWithWhereNestedInput {
   data: PostUpdateManyDataInput!
 }
 
-input PostUpdateOneRequiredWithoutCommentsInput {
-  create: PostCreateWithoutCommentsInput
-  update: PostUpdateWithoutCommentsDataInput
-  upsert: PostUpsertWithoutCommentsInput
-  connect: PostWhereUniqueInput
-}
-
 input PostUpdateWithoutAuthorDataInput {
   title: String
   content: String
   published: Boolean
-  comments: CommentUpdateManyWithoutPostInput
-}
-
-input PostUpdateWithoutCommentsDataInput {
-  title: String
-  content: String
-  published: Boolean
-  author: UserUpdateOneRequiredWithoutPostsInput
 }
 
 input PostUpdateWithWhereUniqueWithoutAuthorInput {
   where: PostWhereUniqueInput!
   data: PostUpdateWithoutAuthorDataInput!
-}
-
-input PostUpsertWithoutCommentsInput {
-  update: PostUpdateWithoutCommentsDataInput!
-  create: PostCreateWithoutCommentsInput!
 }
 
 input PostUpsertWithWhereUniqueWithoutAuthorInput {
@@ -579,9 +308,6 @@ input PostWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
-  comments_every: CommentWhereInput
-  comments_some: CommentWhereInput
-  comments_none: CommentWhereInput
   AND: [PostWhereInput!]
   OR: [PostWhereInput!]
   NOT: [PostWhereInput!]
@@ -592,9 +318,6 @@ input PostWhereUniqueInput {
 }
 
 type Query {
-  comment(where: CommentWhereUniqueInput!): Comment
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
-  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
   post(where: PostWhereUniqueInput!): Post
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
@@ -605,7 +328,6 @@ type Query {
 }
 
 type Subscription {
-  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
@@ -616,7 +338,6 @@ type User {
   email: String!
   password: String!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
 }
 
 type UserConnection {
@@ -630,12 +351,6 @@ input UserCreateInput {
   email: String!
   password: String!
   posts: PostCreateManyWithoutAuthorInput
-  comments: CommentCreateManyWithoutWrittenByInput
-}
-
-input UserCreateOneWithoutCommentsInput {
-  create: UserCreateWithoutCommentsInput
-  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutPostsInput {
@@ -643,18 +358,10 @@ input UserCreateOneWithoutPostsInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreateWithoutCommentsInput {
-  name: String!
-  email: String!
-  password: String!
-  posts: PostCreateManyWithoutAuthorInput
-}
-
 input UserCreateWithoutPostsInput {
   name: String!
   email: String!
   password: String!
-  comments: CommentCreateManyWithoutWrittenByInput
 }
 
 type UserEdge {
@@ -707,20 +414,12 @@ input UserUpdateInput {
   email: String
   password: String
   posts: PostUpdateManyWithoutAuthorInput
-  comments: CommentUpdateManyWithoutWrittenByInput
 }
 
 input UserUpdateManyMutationInput {
   name: String
   email: String
   password: String
-}
-
-input UserUpdateOneRequiredWithoutCommentsInput {
-  create: UserCreateWithoutCommentsInput
-  update: UserUpdateWithoutCommentsDataInput
-  upsert: UserUpsertWithoutCommentsInput
-  connect: UserWhereUniqueInput
 }
 
 input UserUpdateOneRequiredWithoutPostsInput {
@@ -730,23 +429,10 @@ input UserUpdateOneRequiredWithoutPostsInput {
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateWithoutCommentsDataInput {
-  name: String
-  email: String
-  password: String
-  posts: PostUpdateManyWithoutAuthorInput
-}
-
 input UserUpdateWithoutPostsDataInput {
   name: String
   email: String
   password: String
-  comments: CommentUpdateManyWithoutWrittenByInput
-}
-
-input UserUpsertWithoutCommentsInput {
-  update: UserUpdateWithoutCommentsDataInput!
-  create: UserCreateWithoutCommentsInput!
 }
 
 input UserUpsertWithoutPostsInput {
@@ -814,9 +500,6 @@ input UserWhereInput {
   posts_every: PostWhereInput
   posts_some: PostWhereInput
   posts_none: PostWhereInput
-  comments_every: CommentWhereInput
-  comments_some: CommentWhereInput
-  comments_none: CommentWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
